@@ -92,7 +92,7 @@ zoomeye
 | `SecLists` | [https://github.com/danielmiessler/SecLists](https://github.com/danielmiessler/SecLists) |
 | `nslookup -type=any -query=AXFR $TARGET nameserver.target.domain` | Zone Transfer using Nslookup against the target domain and its nameserver. |
 | `dig axfr inlanefreight.htb @TARGET(example IP)` | Zone transfert using dig
-| `gobuster dns -q -r "${NS}" -d "${TARGET}" -w "${WORDLIST}" -p ./patterns.txt -o "gobuster_${TARGET}.txt"` | EXAMPLE: gobuster dns -r "dns1.p08.nsone.net" -q -d "githubapp.com" -w "/usr/share/wordlists/dnslist.txt" -p pattern.txt -o "gobuster_out.txt" | Bruteforcing subdomains. The pattern file contains the following two strings: "lert-api-shv-{GOBUSTER}-sin6", "atlas-pp-shv-{GOBUSTER}-sin6" |
+| `gobuster dns -q -r "${NS}" -d "${TARGET}" -w "${WORDLIST}" -p ./patterns.txt -o "gobuster_${TARGET}.txt"` | Bruteforcing subdomains.| EXAMPLE: gobuster dns -r "dns1.p08.nsone.net" -q -d "githubapp.com" -w "/usr/share/wordlists/dnslist.txt" -p pattern.txt -o "gobuster_out.txt" |
 
 
 ---
