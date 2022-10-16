@@ -1,7 +1,7 @@
 ## WHOIS
 
-| **Command** | **Description** | **More info**
-|-|-|-|
+| **Command** | **Description** |
+|-|-|
 | `export TARGET="domain.tld"` | Assign target to an environment variable. |
 | `whois $TARGET` | WHOIS lookup for the target. |
 
@@ -86,8 +86,8 @@ zoomeye
 ---
 ## Active Subdomain Enumeration
 
-| **Resource/Command** | **Description** |
-|-|-|
+| **Resource/Command** | **Description** | **More info** |
+|-|-|-|
 | `HackerTarget` | [https://hackertarget.com/zone-transfer/](https://hackertarget.com/zone-transfer/) |
 | `SecLists` | [https://github.com/danielmiessler/SecLists](https://github.com/danielmiessler/SecLists) |
 | `nslookup -type=any -query=AXFR $TARGET nameserver.target.domain` | Zone Transfer using Nslookup against the target domain and its nameserver. |
