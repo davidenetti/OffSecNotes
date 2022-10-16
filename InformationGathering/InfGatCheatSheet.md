@@ -1,7 +1,7 @@
 ## WHOIS
 
-| **Command** | **Description** |
-|-|-|
+| **Command** | **Description** | **More info**
+|-|-|-|
 | `export TARGET="domain.tld"` | Assign target to an environment variable. |
 | `whois $TARGET` | WHOIS lookup for the target. |
 
