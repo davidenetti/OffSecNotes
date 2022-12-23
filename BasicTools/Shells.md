@@ -39,8 +39,8 @@ After we run this command, we will hit ctrl+z to background our shell and get ba
 
 - `stty raw -echo`
 - `fg`
-- export SHELL=bash
-- export TERM=xterm-256color
+- `export SHELL=bash`
+- `export TERM=xterm-256color`
 
 Once we hit fg, it will bring back our netcat shell to the foreground. At this point, the terminal will show a blank line. We can hit enter again to get back to our shell or input reset and hit enter to bring it back. At this point, we would have a fully working TTY shell with command history and everything else.
 
